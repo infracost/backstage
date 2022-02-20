@@ -51,6 +51,7 @@
     "@backstage/plugin-shortcuts": "^0.2.2",
     "@backstage/plugin-tech-radar": "^0.5.8",
     "@backstage/plugin-techdocs": "^0.15.0",
+    "@backstage/plugin-techdocs-mkdocs": "^0.0.1",
     "@backstage/plugin-todo": "^0.2.3",
     "@backstage/plugin-user-settings": "^0.4.0",
     "@backstage/plugin-tech-insights": "^0.1.11",
