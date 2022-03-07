@@ -1,5 +1,14 @@
 # @backstage/backend-test-utils
 
+## 0.1.21
+
+### Patch Changes
+
+- 3c2bc73901: Add `setupRequestMockHandlers` which sets up a good `msw` server foundation, copied from `@backstage/test-utils` which is a frontend-only package and should not be used from backends.
+- Updated dependencies
+  - @backstage/cli@0.15.2
+  - @backstage/backend-common@0.13.0
+
 ## 0.1.20
 
 ### Patch Changes

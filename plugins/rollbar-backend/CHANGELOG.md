@@ -1,5 +1,13 @@
 # @backstage/plugin-rollbar-backend
 
+## 0.1.26
+
+### Patch Changes
+
+- 3c2bc73901: Use `setupRequestMockHandlers` from `@backstage/backend-test-utils`
+- Updated dependencies
+  - @backstage/backend-common@0.13.0
+
 ## 0.1.25
 
 ### Patch Changes

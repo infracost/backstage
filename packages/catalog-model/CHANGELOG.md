@@ -1,5 +1,25 @@
 # @backstage/catalog-model
 
+## 0.13.0
+
+### Minor Changes
+
+- 51a9f8f122: **BREAKING**:
+
+  - Removed the previously deprecated type `EntityRef`. Please use `string` for stringified entity refs, `CompoundEntityRef` for compound kind-namespace-name triplet objects, or custom objects like `{ kind?: string; namespace?: string; name: string }` and similar if you have need for partial types.
+  - Removed the previously deprecated type `LocationSpec` type, which has been moved to `@backstage/plugin-catalog-backend`.
+  - Removed the previously deprecated function `parseEntityName`. Please use `parseEntityRef` instead.
+
+- d1d488e371: **BREAKING**: The default validator for `metadata.tags` now permits the colon (`:`) character as well.
+
+### Patch Changes
+
+- b1aacbf96a: Applied the fix for the `/alpha` entry point resolution that was part of the `v0.70.1` release of Backstage.
+- d1d488e371: **DEPRECATION**:
+
+  - Deprecated `CommonValidatorFunctions.isValidString`, please use `isNonEmptyString` instead which is equivalent but better named.
+  - Deprecated `CommonValidatorFunctions.isValidTag`, with no replacement. Its purpose was too specific and not reusable, so it will be removed.
+
 ## 0.12.1
 
 ### Patch Changes

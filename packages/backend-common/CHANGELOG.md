@@ -1,5 +1,19 @@
 # @backstage/backend-common
 
+## 0.13.0
+
+### Minor Changes
+
+- ae9d6fb3df: **BREAKING**:
+
+  - Removed the (since way back) deprecated `createDatabase` export, please use `createDatabaseClient` instead.
+  - Removed the (since way back) deprecated `SingleConnectionDatabaseManager` export, please use `DatabaseManager` instead.
+
+### Patch Changes
+
+- 3c2bc73901: Use `setupRequestMockHandlers` from `@backstage/backend-test-utils`
+- b1aacbf96a: Applied the fix for the `/alpha` entry point resolution that was part of the `v0.70.1` release of Backstage.
+
 ## 0.12.1
 
 ### Patch Changes

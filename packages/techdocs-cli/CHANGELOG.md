@@ -1,5 +1,15 @@
 # @techdocs/cli
 
+## 0.8.17
+
+### Patch Changes
+
+- 91bf1e6c1a: Use `@backstage/plugin-techdocs-node` package instead of `@backstage/techdocs-common`.
+- Updated dependencies
+  - @backstage/catalog-model@0.13.0
+  - @backstage/backend-common@0.13.0
+  - @backstage/plugin-techdocs-node@0.11.12
+
 ## 0.8.16
 
 ### Patch Changes

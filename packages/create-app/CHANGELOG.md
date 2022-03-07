@@ -1,5 +1,46 @@
 # @backstage/create-app
 
+## 0.4.23
+
+### Patch Changes
+
+- f9c7bdd899: Builtin support for cookiecutter based templates has been removed from `@backstage/plugin-scaffolder-backend`. Due to this, the `containerRunner` argument to its `createRouter` has also been removed.
+
+  If you do not use cookiecutter templates and are fine with removing support from it in your own installation, update your `packages/backend/src/plugins/scaffolder.ts` file as follows:
+
+  ```diff
+  -import { DockerContainerRunner } from '@backstage/backend-common';
+   import { CatalogClient } from '@backstage/catalog-client';
+   import { createRouter } from '@backstage/plugin-scaffolder-backend';
+  -import Docker from 'dockerode';
+   import { Router } from 'express';
+   import type { PluginEnvironment } from '../types';
+
+   export default async function createPlugin({
+     reader,
+     discovery,
+   }: PluginEnvironment): Promise<Router> {
+  -  const dockerClient = new Docker();
+  -  const containerRunner = new DockerContainerRunner({ dockerClient });
+  -
+     const catalogClient = new CatalogClient({ discoveryApi: discovery });
+  -
+     return await createRouter({
+  -    containerRunner,
+       logger,
+       config,
+    // ...
+  ```
+
+  If you want to retain cookiecutter support, please use the `@backstage/plugin-scaffolder-backend-module-cookiecutter` package explicitly (see [its README](https://github.com/backstage/backstage/tree/master/plugins/scaffolder-backend-module-cookiecutter) for installation instructions).
+
+- 1201383b60: Updated the template to write the Backstage release version to `backstage.json`, rather than the version of `@backstage/create-app`. This change is applied automatically when running `backstage-cli versions:bump` in the latest version of the Backstage CLI.
+- c543fe3ff2: Postgres-based search is now installed when PG is chosen as the desired database for Backstage.
+
+  There is no need to make this change in an existing Backstage backend. See [supported search engines](https://backstage.io/docs/features/search/search-engines) for details about production-ready search engines.
+
+- 55150919ed: - **BREAKING**: Support for `backstage.io/v1beta2` Software Templates has been removed. Please migrate your legacy templates to the new `scaffolder.backstage.io/v1beta3` `apiVersion` by following the [migration guide](https://backstage.io/docs/features/software-templates/migrating-from-v1beta2-to-v1beta3)
+
 ## 0.4.22
 
 ### Patch Changes

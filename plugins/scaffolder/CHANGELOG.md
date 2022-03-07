@@ -1,5 +1,38 @@
 # @backstage/plugin-scaffolder
 
+## 0.15.0
+
+### Minor Changes
+
+- 310e905998: The following deprecations are now breaking and have been removed:
+
+  - **BREAKING**: Support for `backstage.io/v1beta2` Software Templates has been removed. Please migrate your legacy templates to the new `scaffolder.backstage.io/v1beta3` `apiVersion` by following the [migration guide](https://backstage.io/docs/features/software-templates/migrating-from-v1beta2-to-v1beta3)
+
+  - **BREAKING**: Removed the deprecated `TemplateMetadata`. Please use `TemplateInfo` instead.
+
+  - **BREAKING**: Removed the deprecated `context.baseUrl`. It's now available on `context.templateInfo.baseUrl`.
+
+  - **BREAKING**: Removed the deprecated `DispatchResult`, use `TaskBrokerDispatchResult` instead.
+
+  - **BREAKING**: Removed the deprecated `runCommand`, use `executeShellCommond` instead.
+
+  - **BREAKING**: Removed the deprecated `Status` in favour of `TaskStatus` instead.
+
+  - **BREAKING**: Removed the deprecated `TaskState` in favour of `CurrentClaimedTask` instead.
+
+- 1360f7d73a: **BREAKING**: Removed `ScaffolderTaskOutput.entityRef` and `ScaffolderTaskOutput.remoteUrl`, which both have been deprecated for over a year. Please use the `links` output instead.
+
+### Patch Changes
+
+- d741c97b98: Render markdown for description in software templates
+- Updated dependencies
+  - @backstage/plugin-catalog-react@0.9.0
+  - @backstage/core-components@0.9.1
+  - @backstage/plugin-scaffolder-common@0.3.0
+  - @backstage/catalog-model@0.13.0
+  - @backstage/plugin-catalog-common@0.2.2
+  - @backstage/catalog-client@0.9.0
+
 ## 0.14.0
 
 ### Minor Changes

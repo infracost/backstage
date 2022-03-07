@@ -1,5 +1,16 @@
 # @backstage/plugin-techdocs-node
 
+## 0.11.12
+
+### Patch Changes
+
+- 3e54f6c436: Use `@backstage/plugin-search-common` package instead of `@backstage/search-common`.
+- cea6f10b97: Renamed `@backstage/techdocs-common` to `@backstage/plugin-techdocs-node`.
+- Updated dependencies
+  - @backstage/catalog-model@0.13.0
+  - @backstage/backend-common@0.13.0
+  - @backstage/plugin-search-common@0.3.1
+
 ## 0.11.11
 
 ### Patch Changes
