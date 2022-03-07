@@ -11,15 +11,21 @@ import { CompoundEntityRef } from '@backstage/catalog-model';
 import { Config } from '@backstage/config';
 import { CSSProperties } from '@material-ui/styles';
 import { DiscoveryApi } from '@backstage/core-plugin-api';
+import { default as DOMPurify_2 } from 'dompurify';
 import { Entity } from '@backstage/catalog-model';
+import { FC } from 'react';
 import { FetchApi } from '@backstage/core-plugin-api';
 import { IdentityApi } from '@backstage/core-plugin-api';
 import { PropsWithChildren } from 'react';
 import { default as React_2 } from 'react';
+import { ReactElement } from 'react';
 import { RouteRef } from '@backstage/core-plugin-api';
 import { TableColumn } from '@backstage/core-components';
 import { TableProps } from '@backstage/core-components';
 import { UserListFilterKind } from '@backstage/plugin-catalog-react';
+
+// @public
+export type AddHookParameters = Parameters<typeof DOMPurify_2.addHook>;
 
 // @public
 export const DefaultTechDocsHome: (
@@ -137,6 +143,12 @@ export type EntityListDocsTableProps = {
 export const EntityTechdocsContent: () => JSX.Element;
 
 // @public
+export type HookCallback = AddHookParameters[1];
+
+// @public
+export type HookName = AddHookParameters[0];
+
+// @public
 export const isTechDocsAvailable: (entity: Entity) => boolean;
 
 // @public
@@ -160,14 +172,17 @@ export type PanelType = 'DocsCardGrid' | 'DocsTable';
 export const Reader: (props: ReaderProps) => JSX.Element;
 
 // @public
-export type ReaderProps = {
+export type ReaderProps = PropsWithChildren<{
   entityRef: CompoundEntityRef;
   withSearch?: boolean;
   onReady?: () => void;
-};
+}>;
 
 // @public
 export const Router: () => JSX.Element;
+
+// @public
+export type SanitizeParameters = Parameters<typeof DOMPurify_2.sanitize>;
 
 // @public
 export type SyncResult = 'cached' | 'updated';
@@ -244,7 +259,9 @@ export type TechDocsMetadata = {
 };
 
 // @public @deprecated (undocumented)
-export const TechDocsPage: (props: TechDocsReaderPageProps) => JSX.Element;
+export const TechDocsPage: ({
+  children,
+}: TechDocsReaderPageProps) => JSX.Element;
 
 // @public
 export const TechdocsPage: () => JSX.Element;
@@ -290,9 +307,9 @@ export { techdocsPlugin as plugin };
 export { techdocsPlugin };
 
 // @public
-export const TechDocsReaderPage: (
-  props: TechDocsReaderPageProps,
-) => JSX.Element;
+export const TechDocsReaderPage: ({
+  children,
+}: TechDocsReaderPageProps) => JSX.Element;
 
 // @public
 export const TechDocsReaderPageHeader: (
@@ -307,21 +324,33 @@ export type TechDocsReaderPageHeaderProps = PropsWithChildren<{
 }>;
 
 // @public
+export const TechDocsReaderPageLayout: FC;
+
+// @public
 export type TechDocsReaderPageProps = {
   children?: TechDocsReaderPageRenderFunction | React_2.ReactNode;
 };
 
 // @public
-export type TechDocsReaderPageRenderFunction = ({
-  techdocsMetadataValue,
-  entityMetadataValue,
-  entityRef,
-}: {
-  techdocsMetadataValue?: TechDocsMetadata | undefined;
-  entityMetadataValue?: TechDocsEntityMetadata | undefined;
-  entityRef: CompoundEntityRef;
+export type TechDocsReaderPageRenderFunction = (params: {
   onReady: () => void;
+  entityRef: CompoundEntityRef;
+  entityMetadataValue?: TechDocsEntityMetadata | undefined;
+  techdocsMetadataValue?: TechDocsMetadata | undefined;
 }) => JSX.Element;
+
+// @public
+export const TechDocsReaderProvider: ({
+  children,
+  entityRef,
+  onReady,
+}: TechDocsReaderProviderProps) => JSX.Element;
+
+// @public
+export type TechDocsReaderProviderProps = PropsWithChildren<{
+  entityRef: CompoundEntityRef;
+  onReady?: () => void;
+}>;
 
 // @public
 export const TechDocsSearch: (props: TechDocsSearchProps) => JSX.Element;
@@ -344,6 +373,50 @@ export type TechDocsSearchResultListItemProps = {
   asListItem?: boolean;
   asLink?: boolean;
   title?: string;
+};
+
+// @public
+export const TechDocsShadowDom: React_2.MemoExoticComponent<
+  ({
+    host,
+    source,
+    config,
+    hooks,
+    children,
+    onAttached,
+  }: TechDocsShadowDomProps) => JSX.Element | null
+>;
+
+// @public
+export type TechDocsShadowDomConfig = Omit<
+  SanitizeParameters[1],
+  'WHOLE_DOCUMENT' | 'RETURN_DOM'
+>;
+
+// @public
+export type TechDocsShadowDomHooks = Partial<Record<HookName, HookCallback>>;
+
+// @public
+export type TechDocsShadowDomProps = PropsWithChildren<{
+  host?: ReactElement;
+  source: TechDocsShadowDomSource;
+  config?: TechDocsShadowDomConfig;
+  hooks?: TechDocsShadowDomHooks;
+  onAttached?: (shadowRoot: ShadowRoot) => void;
+}>;
+
+// @public
+export const TechDocsShadowDomProvider: ({
+  dom,
+  children,
+}: PropsWithChildren<TechDocsShadowDomValue>) => JSX.Element;
+
+// @public
+export type TechDocsShadowDomSource = SanitizeParameters[0];
+
+// @public
+export type TechDocsShadowDomValue = {
+  dom: HTMLElement;
 };
 
 // @public
@@ -403,4 +476,7 @@ export class TechDocsStorageClient implements TechDocsStorageApi {
     logHandler?: (line: string) => void,
   ): Promise<SyncResult>;
 }
+
+// @public
+export const useTechDocsShadowDom: () => HTMLElement;
 ```
