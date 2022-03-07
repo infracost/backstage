@@ -21,7 +21,11 @@ import { BackstageTheme } from '@backstage/theme';
 import { CompoundEntityRef } from '@backstage/catalog-model';
 
 import { TechDocsSearch } from '../../../search';
+
+import { EntityDocsProvider } from '../TechDocsEntityDocs';
+import { EntityDocsSyncProvider } from '../TechDocsEntityDocsSync';
 import { TechDocsStateIndicator } from '../TechDocsStateIndicator';
+import { TechDocsNotFound } from '../TechDocsNotFound';
 
 import { useTechDocsReader, TechDocsReaderProvider } from './context';
 
@@ -47,7 +51,7 @@ const TechDocsReaderPage = ({
   children,
 }: TechDocsReaderPageProps) => {
   const classes = useStyles();
-  const { entityRef } = useTechDocsReader();
+  const { entityRef, contentErrorMessage } = useTechDocsReader();
 
   return (
     <Grid container>
@@ -60,7 +64,11 @@ const TechDocsReaderPage = ({
         </Grid>
       )}
       <Grid xs={12} item>
-        {children}
+        {contentErrorMessage ? (
+          <TechDocsNotFound errorMessage={contentErrorMessage} />
+        ) : (
+          children
+        )}
       </Grid>
     </Grid>
   );
@@ -85,8 +93,12 @@ export type ReaderProps = PropsWithChildren<{
 export const Reader = (props: ReaderProps) => {
   const { entityRef, onReady, ...rest } = props;
   return (
-    <TechDocsReaderProvider entityRef={entityRef} onReady={onReady}>
-      <TechDocsReaderPage {...rest} />
-    </TechDocsReaderProvider>
+    <EntityDocsProvider entityRef={entityRef}>
+      <EntityDocsSyncProvider entityRef={entityRef}>
+        <TechDocsReaderProvider entityRef={entityRef} onReady={onReady}>
+          <TechDocsReaderPage {...rest} />
+        </TechDocsReaderProvider>
+      </EntityDocsSyncProvider>
+    </EntityDocsProvider>
   );
 };
