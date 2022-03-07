@@ -1481,7 +1481,7 @@
     react-router-dom "6.0.0-beta.0"
     zen-observable "^0.8.15"
 
-"@backstage/integration@^0.7.3":
+"@backstage/integration@^0.7.3", "@backstage/integration@^0.7.5":
   version "0.7.5"
   resolved "https://registry.npmjs.org/@backstage/integration/-/integration-0.7.5.tgz#c68848f35db51705b3287b6fa6a259ae4b17bfbc"
   integrity sha512-KUoNQLfPaRqQsdfx04IX4d3EIHbJU3tJxoUjVCCDIAThtep6clhY4uoxXIYTUz+bhERUGGJYhMR+1ryEEtwWhw==
@@ -5757,6 +5757,11 @@
   version "0.0.39"
   resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
+
+"@types/event-source-polyfill@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@types/event-source-polyfill/-/event-source-polyfill-1.0.0.tgz#f93f13433f750c8ea0e3cfa69c72e3c7393e0585"
+  integrity sha512-b8O8/rg7NIW0iJ8i9MNDBZqPljHA+b7AjC3QFqH3dSyW6vgrl3oBgyIv5dw2fibh5enHHDkkPZG5PHza7U4NRw==
 
 "@types/expect@^1.20.4":
   version "1.20.4"
@@ -12005,6 +12010,7 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
     "@backstage/plugin-tech-insights" "^0.1.11"
     "@backstage/plugin-tech-radar" "^0.5.8"
     "@backstage/plugin-techdocs" "^0.15.0"
+    "@backstage/plugin-techdocs-mkdocs" "^0.0.1"
     "@backstage/plugin-todo" "^0.2.3"
     "@backstage/plugin-user-settings" "^0.4.0"
     "@backstage/theme" "^0.2.15"
@@ -15270,6 +15276,14 @@ jest-environment-node@^26.6.2:
     "@types/node" "*"
     jest-mock "^26.6.2"
     jest-util "^26.6.2"
+
+jest-fetch-mock@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/jest-fetch-mock/-/jest-fetch-mock-3.0.3.tgz#31749c456ae27b8919d69824f1c2bd85fe0a1f3b"
+  integrity sha512-Ux1nWprtLrdrH4XwE7O7InRY6psIi3GOsqNESJgMJ+M5cv4A8Lh7SN9d2V2kKRZ8ebAfcd1LNyZguAOb6JiDqw==
+  dependencies:
+    cross-fetch "^3.0.4"
+    promise-polyfill "^8.1.3"
 
 jest-get-type@^26.3.0:
   version "26.3.0"
@@ -20367,6 +20381,11 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
+
+promise-polyfill@^8.1.3:
+  version "8.2.1"
+  resolved "https://registry.npmjs.org/promise-polyfill/-/promise-polyfill-8.2.1.tgz#1fa955b325bee4f6b8a4311e18148d4e5b46d254"
+  integrity sha512-3p9zj0cEHbp7NVUxEYUWjQlffXqnXaZIMPkAO7HhFh8u5636xLRDHOUo2vpWSK0T2mqm6fKLXYn1KP6PAZ2gKg==
 
 promise-retry@^2.0.1:
   version "2.0.1"
