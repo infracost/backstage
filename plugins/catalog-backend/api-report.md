@@ -9,7 +9,7 @@ import { BitbucketIntegration } from '@backstage/integration';
 import { CatalogApi } from '@backstage/catalog-client';
 import { CatalogEntityDocument as CatalogEntityDocument_2 } from '@backstage/plugin-catalog-common';
 import { CompoundEntityRef } from '@backstage/catalog-model';
-import { ConditionalPolicyDecision } from '@backstage/plugin-permission-node';
+import { ConditionalPolicyDecision } from '@backstage/plugin-permission-common';
 import { Conditions } from '@backstage/plugin-permission-node';
 import { Config } from '@backstage/config';
 import { DocumentCollatorFactory } from '@backstage/plugin-search-common';

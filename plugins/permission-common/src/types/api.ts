@@ -43,7 +43,7 @@ export enum AuthorizeResult {
 }
 
 /**
- * An individual authorization request for {@link PermissionClient#authorize}.
+ * An individual request for {@link PermissionClient#authorize}.
  * @public
  */
 export type AuthorizeQuery = {
@@ -52,12 +52,80 @@ export type AuthorizeQuery = {
 };
 
 /**
- * A batch of authorization requests from {@link PermissionClient#authorize}.
+ * An individual response from {@link PermissionClient#authorize}.
  * @public
  */
-export type AuthorizeRequest = {
-  items: Identified<AuthorizeQuery>[];
+export type AuthorizeDecision =
+  | { result: AuthorizeResult.ALLOW | AuthorizeResult.DENY }
+  | {
+      result: AuthorizeResult.CONDITIONAL;
+      conditions: PermissionCriteria<PermissionCondition>;
+    };
+
+/**
+ * An request for a {@link @backstage/plugin-permission-node#PermissionPolicy}
+ * to evaluate a permission..
+ *
+ * @remarks
+ *
+ * This differs from {@link AuthorizeQuery} in that `resourceRef` should never
+ * be provided. This forces policies to be written in a way that's compatible
+ * with filtering collections of resources at data load time.
+ *
+ * @public
+ */
+export type PolicyQuery<TPermission extends Permission = Permission> = {
+  permission: TPermission;
+  resourceRef?: never;
 };
+
+/**
+ * A definitive result to an policy query, returned by the
+ * {@link @backstage/plugin-permission-node#PermissionPolicy}.
+ *
+ * @remarks
+ *
+ * This indicates that the policy unconditionally allows (or denies) the
+ * request.
+ *
+ * @public
+ */
+export type DefinitivePolicyDecision = {
+  result: AuthorizeResult.ALLOW | AuthorizeResult.DENY;
+};
+
+/**
+ * A conditional result to an authorization request, returned by the
+ * {@link @backstage/plugin-permission-node#PermissionPolicy}.
+ *
+ * @remarks
+ *
+ * This indicates that the policy allows authorization for the request, given
+ * that the returned conditions hold when evaluated. The conditions will be
+ * evaluated by the corresponding plugin which knows about the referenced
+ * permission rules.
+ *
+ * Similar to {@link @backstage/permission-common#AuthorizeDecision}, but with
+ * the plugin and resource identifiers needed to evaluate the returned
+ * conditions.
+ * @public
+ */
+export type ConditionalPolicyDecision = {
+  result: AuthorizeResult.CONDITIONAL;
+  pluginId: string;
+  resourceType: string;
+  conditions: PermissionCriteria<PermissionCondition>;
+};
+
+/**
+ * The result of evaluating an authorization request with a
+ * {@link @backstage/plugin-permission-node#PermissionPolicy}.
+ *
+ * @public
+ */
+export type PolicyDecision =
+  | DefinitivePolicyDecision
+  | ConditionalPolicyDecision;
 
 /**
  * A condition returned with a CONDITIONAL authorization response.
@@ -113,15 +181,12 @@ export type PermissionCriteria<TQuery> =
   | TQuery;
 
 /**
- * An individual authorization response from {@link PermissionClient#authorize}.
+ * A batch of authorization requests from {@link PermissionClient#authorize}.
  * @public
  */
-export type AuthorizeDecision =
-  | { result: AuthorizeResult.ALLOW | AuthorizeResult.DENY }
-  | {
-      result: AuthorizeResult.CONDITIONAL;
-      conditions: PermissionCriteria<PermissionCondition>;
-    };
+export type AuthorizeRequest = {
+  items: Identified<AuthorizeQuery>[];
+};
 
 /**
  * A batch of authorization responses from {@link PermissionClient#authorize}.

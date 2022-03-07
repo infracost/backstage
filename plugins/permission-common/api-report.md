@@ -54,6 +54,19 @@ export enum AuthorizeResult {
 }
 
 // @public
+export type ConditionalPolicyDecision = {
+  result: AuthorizeResult.CONDITIONAL;
+  pluginId: string;
+  resourceType: string;
+  conditions: PermissionCriteria<PermissionCondition>;
+};
+
+// @public
+export type DefinitivePolicyDecision = {
+  result: AuthorizeResult.ALLOW | AuthorizeResult.DENY;
+};
+
+// @public
 export type DiscoveryApi = {
   getBaseUrl(pluginId: string): Promise<string>;
 };
@@ -122,4 +135,15 @@ export type PermissionCriteria<TQuery> =
   | AnyOfCriteria<TQuery>
   | NotCriteria<TQuery>
   | TQuery;
+
+// @public
+export type PolicyDecision =
+  | DefinitivePolicyDecision
+  | ConditionalPolicyDecision;
+
+// @public
+export type PolicyQuery<TPermission extends Permission = Permission> = {
+  permission: TPermission;
+  resourceRef?: never;
+};
 ```
