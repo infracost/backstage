@@ -16184,9 +16184,9 @@ keyv@^3.0.0:
     json-buffer "3.0.0"
 
 keyv@^4.0.0, keyv@^4.0.3:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/keyv/-/keyv-4.1.0.tgz#8ab5ca4ae6a34e05c629531d9a7f871575af0d5b"
-  integrity sha512-YsY3wr6HabE11/sscee+3nZ03XjvkrPWGouAmJFBdZoK92wiOlJCzI5/sDEIKdJhdhHO144ei45U9gXfbu14Uw==
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/keyv/-/keyv-4.5.0.tgz#dbce9ade79610b6e641a9a65f2f6499ba06b9bc6"
+  integrity sha512-2YvuMsA+jnFGtBareKqgANOEKe1mk3HKiXu2fRmAfyxG0MJAywNhi5ttWA3PMjl4NmpyjZNbFifR2vNjW1znfA==
   dependencies:
     json-buffer "3.0.1"
 
