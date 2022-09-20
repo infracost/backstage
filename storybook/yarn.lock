@@ -8006,10 +8006,10 @@ style-to-object@0.3.0, style-to-object@^0.3.0:
   dependencies:
     inline-style-parser "0.1.1"
 
-sucrase@^3.20.3:
-  version "3.20.3"
-  resolved "https://registry.npmjs.org/sucrase/-/sucrase-3.20.3.tgz#424f1e75b77f955724b06060f1ae708f5f0935cf"
-  integrity sha512-azqwq0/Bs6RzLAdb4dXxsCgMtAaD2hzmUr4UhSfsxO46JFPAwMnnb441B/qsudZiS6Ylea3JXZe3Q497lsgXzQ==
+sucrase@^3.27.0:
+  version "3.27.0"
+  resolved "https://registry.npmjs.org/sucrase/-/sucrase-3.27.0.tgz#32b8e8735ae0e78c6e1e917d2dd61ecad69e5604"
+  integrity sha512-IjpEeFzOWCGrB/e2DnPawkFajW6ONFFgs+lQT1+Ts5Z5ZM9gPnxpDh0q8tu7HVLt6IfRiUTbSsjfhqjHOP/cwQ==
   dependencies:
     commander "^4.0.0"
     glob "7.1.6"
